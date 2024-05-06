@@ -12,6 +12,11 @@ export const SignupFormSchema = z.object({
         .trim()
 })
 
+export const LoginFormSchema = z.object({
+    email: z.string().email({ message: 'Enter a valid email' }).trim(),
+    password: z.string().min(1,{ message: 'Enter a valid password'}).trim(),
+})
+
 export type FormState = | {
     errors? : {
         name?: string[],
@@ -20,3 +25,5 @@ export type FormState = | {
     }
     message?: string
 } | undefined
+
+export type LoginFormState = Omit<FormState, 'name'>

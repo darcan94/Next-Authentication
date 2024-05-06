@@ -1,17 +1,11 @@
 'use client'
-import {signup} from "@/app/actions/auth";
+import {login} from "@/app/actions/auth";
 import {useFormState, useFormStatus} from 'react-dom'
 
-export function SignupForm() {
-    const [state, action] = useFormState(signup, undefined)
+export function LoginForm() {
+    const [state, action] = useFormState(login, undefined)
     return (
         <form className="w-full flex flex-col gap-4" action={ action }>
-            <div>
-                <label className="block" htmlFor="name">Name</label>
-                <input className="w-full p-2 rounded-md" id="name" name="name" placeholder="Name" />
-            </div>
-            {state?.errors?.name && <p className="text-red-600">{state.errors.name}</p>}
-
             <div>
                 <label className="block" htmlFor="email">Email</label>
                 <input className="w-full p-2 rounded-md" id="email" name="email" type="email" placeholder="Email" />
@@ -36,18 +30,18 @@ export function SignupForm() {
                     )
                 }
             </div>
-            <SignupButton />
+            <LoginButton />
         </form>
     )
 }
 
 
-function SignupButton() {
+function LoginButton() {
     const { pending } = useFormStatus()
 
     return (
         <button className="bg-blue-500 p-4 w-full rounded-md text-white" aria-disabled={pending} type="submit">
-            {pending ? 'Submitting...' : 'Sign up'}
+            {pending ? 'Submitting...' : 'Login'}
         </button>
     )
 }
