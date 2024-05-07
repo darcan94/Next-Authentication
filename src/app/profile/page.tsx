@@ -1,4 +1,3 @@
-import { redirect } from "next/navigation";
 import { logout } from "../actions/auth";
 
 export default function ProfilePage() {
@@ -9,7 +8,6 @@ export default function ProfilePage() {
             action={async () => {
             "use server";
             await logout();
-            redirect("/");
             }}
         >
         <button type="submit">Logout</button>
