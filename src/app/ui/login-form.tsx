@@ -1,5 +1,5 @@
 'use client'
-import {login} from "@/app/actions/auth";
+import {login} from '@/app/actions/auth'
 import {useFormState, useFormStatus} from 'react-dom'
 
 export function LoginForm() {

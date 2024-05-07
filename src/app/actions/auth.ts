@@ -1,5 +1,5 @@
 'use server'
-import {FormState, LoginFormSchema, SignupFormSchema} from "@/app/lib/definitions";
+import {FormState, LoginFormSchema, LoginFormState, SignupFormSchema} from "@/app/lib/definitions";
 import bcrypt from 'bcrypt';
 import {getUser, insertUser} from "@/app/lib/database";
 import {createSession, deleteSession} from "@/app/lib/session";
@@ -39,7 +39,7 @@ export async function signup( state: FormState, formData: FormData ) {
     redirect('/profile')
 }
 
-export async function login(state: FormState, formData: FormData) {
+export async function login(state: LoginFormState, formData: FormData) {
     //1. Validate form fields
     const validatedFields = LoginFormSchema.safeParse({
         email: formData.get('email'),
@@ -59,10 +59,10 @@ export async function login(state: FormState, formData: FormData) {
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if(passwordsMatch) {
         //4. Create user session
-    await createSession(user._id)
+        await createSession(user._id)
 
-    //5. redirect user
-    redirect('/profile')
+        //5. redirect user
+        redirect('/profile')
     }
 }
 

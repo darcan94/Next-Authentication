@@ -26,4 +26,10 @@ export type FormState = | {
     message?: string
 } | undefined
 
-export type LoginFormState = Omit<FormState, 'name'>
+export type LoginFormState = | {
+    errors? : {
+        email?: string[],
+        password?: string[],
+    }
+    message?: string
+} | undefined
