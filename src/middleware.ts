@@ -6,9 +6,7 @@ import { NextRequest, NextResponse } from "next/server"
 const protectedRoutes = ['/profile']
 const publicRoutes = ['/login', '/signup', '/']
 
-export default async function middleware(req: NextRequest){
-    console.log('middleware');
-    
+export default async function middleware(req: NextRequest){    
 // 2. Check if the current route is protected or public
     const path = req.nextUrl.pathname
     const isProtectedRoute = protectedRoutes.includes(path)
@@ -17,15 +15,14 @@ export default async function middleware(req: NextRequest){
 // 3. Decrypt the session from the cookie
     const cookie = cookies().get('session')?.value
     const session = await decrypt(cookie)
-    console.log(session)
     
 // 4. Redirect to /login if the user is not authenticated
-    if(isProtectedRoute && !session?.userId){
+    if(isProtectedRoute && !session?.user){
         return NextResponse.redirect(new URL('/login', req.nextUrl))
     }
 
 // 5. Redirect to /profile if the user is authenticated
-    if(isPublicRoute && session?.userId && !req.nextUrl.pathname.startsWith('/profile')){
+    if(isPublicRoute && session?.user && !req.nextUrl.pathname.startsWith('/profile')){
         return NextResponse.redirect(new URL('/profile', req.nextUrl)) 
     }
 

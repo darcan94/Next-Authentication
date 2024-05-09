@@ -23,7 +23,6 @@ export async function signup( state: FormState, formData: FormData ) {
     //2. Prepare data for insertion into database
     const { name, email, password } = validatedFields.data
     const hashedPassword = await bcrypt.hash(password, 10)
-
     //3. Insert the user into the database or call an Auth Library's API
     const userId = await insertUser({name, email, password: hashedPassword})
     if(!userId){
@@ -31,10 +30,8 @@ export async function signup( state: FormState, formData: FormData ) {
             message: 'An error occurred while creating your account.',
         }
     }
-
     //4. Create user session
     await createSession(userId)
-
     //5. redirect user
     redirect('/profile')
 }
@@ -54,13 +51,13 @@ export async function login(state: LoginFormState, formData: FormData) {
 
     const { email, password } = validatedFields.data
     const user = await getUser(email)
+    
     if(!user) return null
 
     const passwordsMatch = await bcrypt.compare(password, user.password);
     if(passwordsMatch) {
-        //4. Create user session
-        await createSession(user._id)
-
+        //4. Create user session        
+        await createSession(user)
         //5. redirect user
         redirect('/profile')
     }

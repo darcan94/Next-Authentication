@@ -1,7 +1,8 @@
 import { Url } from "next/dist/shared/lib/router/router"
 import Link from "next/link"
-import { InputHTMLAttributes, ReactNode } from "react"
+import { InputHTMLAttributes, ReactNode, useState } from "react"
 import { useFormStatus } from "react-dom"
+import { EyeIcon } from "@/app/ui/icons"
 
 export function FormContainer({children}: {children: ReactNode}){
     return(
@@ -48,6 +49,42 @@ export const InputField: React.FC<InputProps> = (props) => {
             style={style}
             {...inputProps}
         />
+    )
+}
+
+export const PasswordInput: React.FC<InputProps> = () => {
+    'use client'
+    const [isPasswordVisible, setPasswordVisible] = useState(false);
+
+    const handleChangePasswordVisibility = () => {
+        setPasswordVisible(!isPasswordVisible);
+    }
+
+    return (
+        <>
+            <label className="block text-sm font-medium text-gray-400" htmlFor="password">Password</label>
+            <div className="mt-1 flex items-center">
+                <InputField id="password" 
+                    autoComplete="current-password"
+                    name="password" 
+                    placeholder="Password"
+                    type={isPasswordVisible ? "text" : "password" } 
+                />
+
+                <div className="ml-3 flex">
+                    <ShowPasswordButton active = {isPasswordVisible} onclick = {handleChangePasswordVisibility}/>
+                </div>
+            </div>
+        </>
+    )
+}
+
+function ShowPasswordButton({onclick, active}: {onclick: () => void, active: boolean}){    
+    return(
+        <button onClick={onclick} type='button' className="text-gray-400 hover:text-gray-300">
+            <EyeIcon className={`h-5 w-5 ${active ? 'hover:stroke-indigo-400 stroke-indigo-500': ''}`} />
+            <span className="sr-only">Show password</span>
+        </button>
     )
 }
 

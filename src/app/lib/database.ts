@@ -34,7 +34,6 @@ export async function getUser(email: string) {
         const db =  client.db('chatai')
         const collection =  db.collection('users')
         const user = await collection.findOne({email: email})
-        console.log(user)
         return user as User
     }catch (error){
         console.error(error);

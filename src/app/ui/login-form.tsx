@@ -2,8 +2,7 @@
 import {login} from '@/app/actions/auth'
 import Link from 'next/link'
 import {useFormState} from 'react-dom'
-import {Form, FormContainer, FormHeader, InputField, SubmitButton} from './form'
-import { EyeIcon } from './icons'
+import {Form, FormContainer, FormHeader, InputField, PasswordInput, SubmitButton} from '@/app/ui/form'
 
 export function LoginForm() {
     const [state, action] = useFormState(login, undefined)
@@ -23,22 +22,7 @@ export function LoginForm() {
                 {state?.errors?.email && <p className="text-red-600">{state.errors.email}</p>}
 
                 <div className='space-y-1'>
-                    <label className="block text-sm font-medium text-gray-400" htmlFor="password">Password</label>
-                    <div className="mt-1 flex items-center">
-                        <InputField id="password" 
-                            autoComplete="current-password"
-                            name="password" 
-                            placeholder="Password"
-                            type="password" 
-                        />
-
-                        <div className="ml-3 flex">
-                            <button type='button' className="text-gray-400 hover:text-gray-300">
-                                <EyeIcon className="h-5 w-5" />
-                                <span className="sr-only">Show password</span>
-                            </button>
-                        </div>
-                    </div>
+                    <PasswordInput />
                 </div>
                     {
                         state?.errors?.password && (
