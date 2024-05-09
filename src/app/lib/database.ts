@@ -9,11 +9,12 @@ export type User = {
 
 export async function insertUser(user: User) {
     const uri = process.env.MONGO_DB_URI ?? ""
+    const database = process.env.DB_NAME
     const client = new MongoClient(uri)
 
     try {
         await client.connect();
-        const db =  client.db('chatai')
+        const db =  client.db(database)
         const collection =  db.collection('users')
         const result = await collection.insertOne(user)
         console.log(result.insertedId)
@@ -27,11 +28,12 @@ export async function insertUser(user: User) {
 
 export async function getUser(email: string) {
     const uri = process.env.MONGO_DB_URI ?? ""
+    const database = process.env.DB_NAME
     const client = new MongoClient(uri)
 
     try {
         await client.connect();
-        const db =  client.db('chatai')
+        const db =  client.db(database)
         const collection =  db.collection('users')
         const user = await collection.findOne({email: email})
         return user as User
