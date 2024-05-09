@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
 import "./globals.css";
+import { ViewTransitions } from "next-view-transitions";
 
 const comfortaa = Comfortaa({ 
   subsets: ["latin"],
@@ -18,8 +19,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={comfortaa.className}>{children}</body>
-    </html>
+    <ViewTransitions>
+      <html lang="en">
+        <body className={comfortaa.className}>{children}</body>
+      </html>
+    </ViewTransitions>
   );
 }

@@ -1,12 +1,14 @@
 import { Url } from "next/dist/shared/lib/router/router"
-import Link from "next/link"
 import { InputHTMLAttributes, ReactNode, useState } from "react"
 import { useFormStatus } from "react-dom"
 import { EyeIcon } from "@/app/ui/icons"
+import { Link } from "next-view-transitions"
 
 export function FormContainer({children}: {children: ReactNode}){
     return(
-        <div className='w-full max-w-md space-y-8'>
+        <div className='w-full max-w-md space-y-8' style={{
+            viewTransitionName: 'container'
+        }}>
             {children}
         </div>
     )
