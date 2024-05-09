@@ -1,14 +1,9 @@
 import {SignupForm} from "@/app/ui/signup-form";
-import Link from "next/link";
 
 export default  function  SignupPage(){
     return (
-        <main className="h-screen flex items-center justify-center">
-            <div className="w-3/12 h-auto flex flex-col gap-4 justify-center items-center p-4 bg-zinc-300 rounded-lg">
-                <h1>Sign Up</h1>
-                <SignupForm />
-            </div>
-            <Link href='/'>Back</Link>
+        <main className="flex min-h-screen items-center justify-center bg-gradient-to-br from-[#0c1023] to-[#1e2949] px-4 py-12 sm:px-6 lg:px-8">
+            <SignupForm />
         </main>
     )
 }
