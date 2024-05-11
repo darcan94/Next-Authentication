@@ -1,5 +1,5 @@
 import { Url } from "next/dist/shared/lib/router/router"
-import { InputHTMLAttributes, ReactNode, useState } from "react"
+import React, { InputHTMLAttributes, ReactNode, useState } from "react"
 import { useFormStatus } from "react-dom"
 import { EyeIcon } from "@/app/ui/icons"
 import { Link } from "next-view-transitions"

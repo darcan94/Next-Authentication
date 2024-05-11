@@ -2,15 +2,17 @@ import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
 import "./globals.css";
 import { ViewTransitions } from "next-view-transitions";
+import {NextFont} from "next/dist/compiled/@next/font";
+import React from "react";
 
-const comfortaa = Comfortaa({ 
+const comfortaa: NextFont = Comfortaa({
   subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Authentication",
-  description: "App ",
+  title: "Classic Authentication",
+  description: "Classic auth without library ",
 };
 
 export default function RootLayout({

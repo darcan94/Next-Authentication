@@ -7,11 +7,11 @@ export type User = {
     password: string;
 }
 
-export async function insertUser(user: User) {
-    const uri = process.env.MONGO_DB_URI ?? ""
-    const database = process.env.DB_NAME
-    const client = new MongoClient(uri)
+const uri = process.env.MONGO_DB_URI ?? ""
+const database = process.env.DB_NAME
+const client = new MongoClient(uri)
 
+export async function insertUser(user: User) {
     try {
         await client.connect();
         const db =  client.db(database)
@@ -27,10 +27,6 @@ export async function insertUser(user: User) {
 }
 
 export async function getUser(email: string) {
-    const uri = process.env.MONGO_DB_URI ?? ""
-    const database = process.env.DB_NAME
-    const client = new MongoClient(uri)
-
     try {
         await client.connect();
         const db =  client.db(database)

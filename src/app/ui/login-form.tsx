@@ -2,7 +2,14 @@
 import {login} from '@/app/actions/auth'
 import Link from 'next/link'
 import {useFormState} from 'react-dom'
-import {Form, FormContainer, FormHeader, InputField, PasswordInput, SubmitButton} from '@/app/ui/form'
+import {
+    Form,
+    FormContainer,
+    FormHeader,
+    InputField,
+    PasswordInput,
+    SubmitButton
+} from '@/app/ui/form'
 
 export function LoginForm() {
     const [state, action] = useFormState(login, undefined)
