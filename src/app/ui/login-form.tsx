@@ -1,5 +1,5 @@
 'use client'
-import {login} from '@/app/actions/auth'
+import {login} from '@/app/lib/actions'
 import Link from 'next/link'
 import {useFormState} from 'react-dom'
 import {
@@ -36,7 +36,7 @@ export function LoginForm() {
                             <div className="text-red-600">
                                 <p>Password must be:</p>
                                 <ul>
-                                    {state.errors.password.map( error => (
+                                    {state.errors.password.map( (error: any) => (
                                         <li key={error}> - {error}</li>
                                     ))}
                                 </ul>

@@ -1,10 +1,10 @@
 'use client'
-import {signup} from "@/app/actions/auth";
 import {useFormState} from 'react-dom'
 import {Form, FormContainer, FormHeader, InputField, PasswordInput, SubmitButton} from "@/app/ui/form";
+import {signUp} from "@/app/lib/actions";
 
 export function SignupForm() {
-    const [state, action] = useFormState(signup, undefined)
+    const [state, action] = useFormState(signUp, undefined)
     return (
         <FormContainer>
             <FormHeader title="Create an account" subtitle="Sign in" text="Already have an account?" link="/login"/>
