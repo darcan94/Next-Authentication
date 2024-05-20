@@ -15,7 +15,7 @@ export default async function ProfilePage() {
             <form
                 action={async () => {
                 "use server";
-                await signOut();
+                await signOut({redirectTo: '/login'});
             }}>
                 <button className="absolute top-2 right-2 text-white" type="submit">Logout</button>
             </form>

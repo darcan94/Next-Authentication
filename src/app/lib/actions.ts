@@ -3,6 +3,7 @@ import {signIn} from "@/auth";
 import {FormState, LoginFormSchema, LoginFormState, SignupFormSchema} from "@/app/lib/definitions";
 import {insertUser} from "@/app/lib/database";
 import bcrypt from "bcrypt";
+import { AuthError } from "next-auth";
 
 export async function signUp(
     prevState: FormState,
@@ -55,6 +56,18 @@ export async function login(
     try {
         await signIn('credentials', validatedFields.data)
     }catch (error){
+        if (error instanceof AuthError) {
+            switch (error.type) {
+              case 'CredentialsSignin':
+                return { message: 'Invalid credentials.' };
+              default:
+                return { message: 'Something went wrong.' };
+            }
+          }
         throw error
     }
+}
+
+export async function loginWithGithub(){
+    await signIn('github');
 }
