@@ -10,7 +10,7 @@ export const InputField: React.FC<InputProps> = (props) => {
     return (
         <input 
             className={`block w-full appearance-none rounded-md border 
-            border-gray-500 bg-gray-700 px-3 py-2 text-white 
+            border-gray-300 bg-white px-3 py-2 text-gray-900 
             placeholder-gray-400 focus:border-indigo-500 
             focus:outline-none focus:ring-indigo-500 sm:text-sm ${className}`}
             style={style}
@@ -28,7 +28,7 @@ export const PasswordInput: React.FC<InputProps> = () => {
 
     return (
         <>
-            <label className="block text-sm font-medium text-gray-400" htmlFor="password">Password</label>
+            <label className="block text-sm font-medium text-gray-700" htmlFor="password">Password</label>
             <div className="mt-1 flex items-center">
                 <InputField id="password" 
                     autoComplete="current-password"

@@ -16,18 +16,20 @@
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.18",
     "next-view-transitions": "^0.1.1",
+    "prism-react-renderer": "^2.3.1",
     "react": "^18",
     "react-dom": "^18",
     "zod": "^3.23.6"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "daisyui": "^4.11.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+    "typescript": "^5"
   }
 }
