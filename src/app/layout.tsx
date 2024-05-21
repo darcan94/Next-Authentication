@@ -11,8 +11,8 @@ const comfortaa: NextFont = Comfortaa({
 });
 
 export const metadata: Metadata = {
-  title: "Classic Authentication",
-  description: "Classic auth without library ",
+  title: "Auth.js Authentication",
+  description: "Authentication with Auth.js",
 };
 
 export default function RootLayout({

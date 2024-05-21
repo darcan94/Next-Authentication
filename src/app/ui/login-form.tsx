@@ -1,22 +1,30 @@
 'use client'
 import {login, loginWithGithub} from '@/app/lib/actions'
-import Link from 'next/link'
 import {useFormState} from 'react-dom'
 import {
-    Form,
-    FormContainer,
-    FormHeader,
     InputField,
     PasswordInput,
     SubmitButton
-} from '@/app/ui/form'
+} from '@/app/ui/form-components'
+import { Link } from 'next-view-transitions'
 
 export function LoginForm() {
     const [state, action] = useFormState(login, undefined)
     return (
-        <FormContainer>
-            <FormHeader title='Sign in to your account' subtitle='sign up' text='Or' link='/signup'/>
-            <Form action={ action }>
+        <div className='w-full max-w-md space-y-8' style={{ viewTransitionName: 'container'}}>
+            <div>
+                <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-white">
+                    Sign in to your account
+                </h2>
+                <p className="mt-2 text-center text-sm text-gray-400">
+                    <span>Or </span>
+                    <Link className="font-medium text-indigo-500 hover:text-indigo-400" href="/signup">
+                        Sign up
+                    </Link>
+                </p>
+            </div>
+
+            <form className="space-y-6" action={ action }>
                 <div className='space-y-1'>
                     <label className="block text-sm font-medium text-gray-400" htmlFor="email">Email address</label>
                     <InputField id="email" 
@@ -43,6 +51,7 @@ export function LoginForm() {
                             </div>
                         )
                     }
+
                 <div className="flex items-center justify-between">
                     <div className="flex items-center">
                         <input type='checkbox'
@@ -60,8 +69,10 @@ export function LoginForm() {
                         </Link>
                     </div>
                 </div>
+                
                 <SubmitButton text="Sign In" />
-            </Form>
+            </form>
+
             <form action={loginWithGithub}>
                 <button 
                     className='flex items-center justify-center w-full justify-center rounded-md border border-transparent 
@@ -73,6 +84,6 @@ export function LoginForm() {
                         <span className='grow'>Signin with GitHub</span>
                 </button>
             </form>
-        </FormContainer>
+        </div>
     )
 }
