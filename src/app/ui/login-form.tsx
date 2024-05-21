@@ -1,5 +1,5 @@
 'use client'
-import {login} from '@/app/actions/auth'
+import {login, loginWithGithub} from '@/app/lib/actions'
 import Link from 'next/link'
 import {useFormState} from 'react-dom'
 import {
@@ -36,7 +36,7 @@ export function LoginForm() {
                             <div className="text-red-600">
                                 <p>Password must be:</p>
                                 <ul>
-                                    {state.errors.password.map( error => (
+                                    {state.errors.password.map( (error: any) => (
                                         <li key={error}> - {error}</li>
                                     ))}
                                 </ul>
@@ -62,6 +62,17 @@ export function LoginForm() {
                 </div>
                 <SubmitButton text="Sign In" />
             </Form>
+            <form action={loginWithGithub}>
+                <button 
+                    className='flex items-center justify-center w-full justify-center rounded-md border border-transparent 
+                    bg-slate-200 py-3 px-4 text-sm font-medium text-slate-800 shadow-sm 
+                    hover:bg-slate-300 focus:outline-none focus:ring-2 
+                    focus:ring-indigo-500 focus:ring-offset-2' 
+                    type="submit">
+                        <img loading="lazy" height="20" width="20" id="provider-logo" src="https://authjs.dev/img/providers/github.svg"></img>
+                        <span className='grow'>Signin with GitHub</span>
+                </button>
+            </form>
         </FormContainer>
     )
 }

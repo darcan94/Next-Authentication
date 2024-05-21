@@ -14,6 +14,7 @@
     "jose": "^5.2.4",
     "mongodb": "^6.6.0",
     "next": "14.2.3",
+    "next-auth": "^5.0.0-beta.18",
     "next-view-transitions": "^0.1.1",
     "react": "^18",
     "react-dom": "^18",
