@@ -3,7 +3,7 @@ import { LoginForm } from "../ui/login-form";
 
 export default function LoginPage(){
     return (
-        <main className="flex min-h-screen bg-gradient-to-br from-[#0c1023] to-[#1e2949]">
+        <main className="flex h-screen bg-gradient-to-br from-indigo-600 from-10% via-sky-500 via-40% to-emerald-500 to-95%">
             <section className="flex justify-center items-center w-8/12 h-auto">
                 <CodeContainer/>
             </section>

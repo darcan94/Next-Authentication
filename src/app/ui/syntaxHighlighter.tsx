@@ -5,7 +5,7 @@ export default function SyntaxHighlighter({ code, language}: any){
     return (
         <Highlight code={code} language={language}>
             {({tokens, getLineProps, getTokenProps }) => (
-                <div className="overflow-x-auto p-2" >
+                <div className="text-wrap p-2" >
                     {tokens.map((line, i) => (
                         <div key={ i } {...getLineProps({ line })}>
                             {line.map((token, key) => {
