@@ -1,6 +1,7 @@
-import SyntaxHighlighter from "./syntaxHighlighter"
+import SyntaxHighlighter from "react-syntax-highlighter/dist/esm/default-highlight"
 import { sourceCodes } from "./code"
 import { Fragment } from "react"
+import { atomOneDark } from "react-syntax-highlighter/dist/cjs/styles/hljs"
 
 export default function CodeContainer(){
     return (
@@ -16,7 +17,12 @@ export default function CodeContainer(){
                 <Fragment key={index}>
                     <input type="radio" name="my_tabs_2" role="tab" className="tab sticky top-0 bg-gray-950 focus:text-cyan-400 text-left" aria-label={sourceCode.fileName}/>
                     <pre role="tabpanel" className="tab-content">
-                        <SyntaxHighlighter code={sourceCode.code} language={sourceCode.lang} />
+                      <SyntaxHighlighter 
+                          language={sourceCode.lang}
+                          style={atomOneDark}
+                          customStyle={{margin: 0, background: "transparent"}}>
+                            {sourceCode.code}
+                      </SyntaxHighlighter>
                     </pre>
                 </Fragment>))
             }

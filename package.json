@@ -16,15 +16,16 @@
     "next": "14.2.3",
     "next-auth": "^5.0.0-beta.18",
     "next-view-transitions": "^0.1.1",
-    "prism-react-renderer": "^2.3.1",
     "react": "^18",
     "react-dom": "^18",
+    "react-syntax-highlighter": "^15.5.0",
     "zod": "^3.23.6"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/react-syntax-highlighter": "^15.5.13",
     "daisyui": "^4.11.1",
     "eslint": "^8",
     "eslint-config-next": "14.2.3",
