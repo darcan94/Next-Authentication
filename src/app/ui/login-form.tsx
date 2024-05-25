@@ -11,7 +11,7 @@ import { Link } from 'next-view-transitions'
 export function LoginForm() {
     const [state, action] = useFormState(login, undefined)
     return (
-        <div className='w-full max-w-md space-y-8' style={{ viewTransitionName: 'container'}}>
+        <div className='w-full space-y-8' style={{ viewTransitionName: 'container'}}>
             <div>
                 <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
                     Sign in to your account
