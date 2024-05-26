@@ -7,7 +7,7 @@ export default function Home() {
         Example of Authentication with Next and Auth JS
       </h1>
         <div className="flex flex-col">
-          <Link href="/login">Login</Link>
+          <Link href="/login/">Login</Link>
         </div>
     </main>
   );

@@ -1,14 +1,13 @@
-export const sourceCodes = [{
+export const basicAuthCode = [
+{
     fileName: '...login-form.tsx',
     lang:'typescript',
-    code:`\t'use client'
-    import {useFormState, useFormStatus} from 'react-dom'
-    import {login} from '@app/lib/actions'
-    
-    export function LoginForm(){
-      const [state, action] = useFormState(login, undefined)
+    code:`\texport function LoginForm(){
       return (
-        <form action={ action }>
+        <form action={ async (formData) => {
+            "use server"
+            await signIn("credentials", formData)
+        } }>
           <div>
             <label htmlFor="email">Email address</label>
             <input name="email" type="email" placeholder="you@example.com"/>
@@ -17,21 +16,12 @@ export const sourceCodes = [{
             <label htmlFor="password">Password</label>
             <input name="password" type="password" placeholder="password"/>
           </div>
-          <LoginButton/>
+          <button type="submit">Login</button>
         </form>
       )
-    }
-
-    function LoginButton(){
-      const { pending } = useFormStatus()
-      return (
-        <button aria-disabled={pending} type="submit">
-          {pending ? 'Submitting...' : Login }
-        </button>
-      )
-    }`
-    },
-    {
+    } `
+},
+{
     fileName: 'app/auth.ts',
     lang:'typescript',
     code: `\timport NextAuth from "next-auth";
@@ -46,8 +36,7 @@ export const sourceCodes = [{
       ...authConfig,
         providers: [
           Credentials({
-            async authorize(credentials: any){
-              const { email, password } = credentials
+            async authorize({ email, password }){
               const user = await getUser(email)
               if(!user) return null  
               const isPasswordMatch = await bcrypt.compare(password, user.password)
@@ -55,8 +44,8 @@ export const sourceCodes = [{
             },
           }),]
       })`
-    },
-    {
+},
+{
     fileName: 'app/auth.config.ts',
     lang:'typescript',
     code: `\timport {NextAuthConfig} from "next-auth";
@@ -80,8 +69,8 @@ export const sourceCodes = [{
       },
       providers: [],
     } satisfies NextAuthConfig`
-    },
-    {
+},
+{
     fileName: 'app/middleware.ts',
     lang:'typescript',
     code: `\timport NextAuth from "next-auth";
@@ -94,4 +83,66 @@ export const sourceCodes = [{
       matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
     };`
     }
+]
+
+export const oauthCode = [
+    {
+        fileName: '...login-form.tsx',
+        lang:'typescript',
+        code: `\timport Image from "next/image";
+    import {signIn} from "@/auth";
+    
+    export default function LoginForm() {
+        return (
+            <form action={async () => {
+                "use server"
+                await signIn("github")
+            }}>
+                <button type="submit">
+                    <Image 
+                        height="20" 
+                        width="20" 
+                        alt="provider-logo"
+                           src="https://authjs.dev/img/providers/github.svg">
+                    </Image>
+                    <span className='grow'>Signin with GitHub</span>
+                </button>
+        </form>)
+    }`
+    },
+    {
+        fileName: 'app/auth.ts',
+        lang:'typescript',
+        code: `\timport NextAuth from "next-auth";
+    import GitHub from "next-auth/providers/github";
+    
+    export const { auth, signIn, signOut, handlers: { GET, POST } } = NextAuth({
+        providers: [GitHub]
+      })`
+    },
+    {
+        fileName: 'api/auth/[...nextauth]/route.ts',
+        lang:'typescript',
+        code: `\texport { GET, POST } from "@/auth";`
+    },
+    {
+        fileName: 'app/middleware.ts',
+        lang:'typescript',
+        code: `\timport NextAuth from "next-auth";
+    import {authConfig} from "@/auth.config";
+        
+    export default NextAuth(authConfig).auth;
+        
+    export const config = {
+      // https://nextjs.org/docs/app/building-your-application/routing/middleware#matcher
+      matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)'],
+    };`
+    },
+    {
+        fileName: '.env.local',
+        lang:'',
+        code: `\t\tAUTH_GITHUB_ID={CLIENT_ID}
+        AUTH_GITHUB_SECRET={CLIENT_SECRET}`
+    }
+
 ]

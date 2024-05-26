@@ -18,7 +18,7 @@ export function SignupForm() {
                 </h2>
                 <p className="mt-2 text-center text-sm text-gray-400">
                     <span>Already have an account? </span>
-                    <Link className="font-medium text-indigo-500 hover:text-indigo-400" href="/login">
+                    <Link className="font-medium text-indigo-500 hover:text-indigo-400" href="/login/basic">
                         Sign in
                     </Link>
                 </p>

@@ -67,7 +67,3 @@ export async function login(
         throw error
     }
 }
-
-export async function loginWithGithub(){
-    await signIn('github');
-}

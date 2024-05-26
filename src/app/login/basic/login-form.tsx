@@ -1,5 +1,5 @@
 'use client'
-import {login, loginWithGithub} from '@/app/lib/actions'
+import {login} from '@/app/lib/actions'
 import {useFormState} from 'react-dom'
 import {
     InputField,
@@ -51,20 +51,9 @@ export function LoginForm() {
                             </div>
                         )
                     }
+                    {state?.message && <p className="text-red-600">{state.message}</p>}
                 
                 <SubmitButton text="Sign In" />
-            </form>
-
-            <form action={loginWithGithub}>
-                <button 
-                    className='flex items-center justify-center w-full justify-center rounded-md border border-transparent 
-                    bg-slate-200 py-3 px-4 text-sm font-medium text-slate-800 shadow-sm 
-                    hover:bg-slate-300 focus:outline-none focus:ring-2 
-                    focus:ring-indigo-500 focus:ring-offset-2' 
-                    type="submit">
-                        <img loading="lazy" height="20" width="20" id="provider-logo" src="https://authjs.dev/img/providers/github.svg"></img>
-                        <span className='grow'>Signin with GitHub</span>
-                </button>
             </form>
         </div>
     )

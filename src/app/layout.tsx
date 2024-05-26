@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Comfortaa } from "next/font/google";
 import "./globals.css";
-import { ViewTransitions } from "next-view-transitions";
+import {Link, ViewTransitions} from "next-view-transitions";
 import {NextFont} from "next/dist/compiled/@next/font";
 import React from "react";
-import {TailwindIndicator} from "@/app/tailwindIndicator";
 
 const comfortaa: NextFont = Comfortaa({
   subsets: ["latin"],
@@ -26,7 +25,6 @@ export default function RootLayout({
       <html lang="en">
         <body className={`${comfortaa.className} w-screen h-screen`}>
           {children}
-          <TailwindIndicator/>
         </body>
       </html>
     </ViewTransitions>
