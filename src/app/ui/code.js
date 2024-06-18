@@ -5,7 +5,7 @@ export const basicAuthCode = [
     code:`\texport function LoginForm(){
       return (
         <form action={ async (formData) => {
-            "use server"
+            'use server'
             await signIn("credentials", formData)
         } }>
           <div>
@@ -107,7 +107,8 @@ export const oauthCode = [
                     </Image>
                     <span className='grow'>Signin with GitHub</span>
                 </button>
-        </form>)
+            </form>
+          )
     }`
     },
     {
